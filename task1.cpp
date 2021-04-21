@@ -42,6 +42,6 @@ int main() {
     dishes[2][0] = 0;
     dishes[0][0] = 0;
     cutlery[0][3] = 0;
-    std::cout << chair[11][0];
+    //std::cout << chair [4][0];
     return 0;
 }
