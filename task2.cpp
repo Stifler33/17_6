@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-
+char player1;
+char player2;
 char playingField[3][3] = {'0','0','0',
                            '0','0','0',
                            '0','0','0',};
@@ -14,6 +15,9 @@ void coutField(){
         cout << endl;
     }
 }
+char chekWin(){
+
+}
 int main() {
     char userAns = '0';
     bool corUsAns = (userAns == 'O' || userAns == 'X');
@@ -26,8 +30,13 @@ int main() {
         }else cout << "invalid character\n" << "O or X\n";
     }
     if (userAns == 'X'){
-        cout << "player 1 " << userAns << endl << "player 2 " << 'O';
-    }else if (userAns == 'O') cout << "player 1 " << userAns << endl << "player 2 " << 'X';
-    
+        cout << "player 1 " << userAns << endl << "player 2 O\n";
+        player1 = userAns;
+    }else if (userAns == 'O') {
+        cout << "player 1 " << userAns << endl << "player 2 X\n";
+        player1 = userAns;
+    }
+    player1 == 'X' ? player2 = 'O' : player2 = 'X';
+
     return 0;
 }
