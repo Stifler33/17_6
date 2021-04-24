@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 using namespace std;
 char userAns = '0';
 char player1;
