@@ -29,9 +29,9 @@ bool chekInput(int player){
     while (!corXY){
         cout << "incorrect X or Y\n" << "Please enter correct X and Y :";
         cin >> x;
-        assert(x >= 0 && x <= 3);
+        assert(x >= 0);
         cin >> y;
-        assert(y >= 0 && y <= 3);
+        assert(y >= 0);
         x -= 1, y -= 1;
         //assert((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
         corXY = playingField[y][x] == '0' && ((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
