@@ -12,7 +12,7 @@ char playingField[3][3] = {'0','0','0',
 
 
 void coutField(){
-    for (int line = 0 ; line < 3; line++){
+    for (int line = 2 ; line >= 0; line--){
         for (int column = 0; column < 3 ; column++){
             cout << playingField[line][column] << ' ';
         }
@@ -23,19 +23,27 @@ bool chekWin(){
     return false;
 }
 bool chekInput(int player){
-    if (playingField[y][x] == '0'){
-        if (player == 1 && userAns == player1 || player == 2 && userAns == player2){
-            playingField[y][x] = userAns;
-            coutField();
-            return true;
-        }else {
-            cout << "incorrect input !\n";
-            return false;
-        }
-    }else {
-        cout << "incorrect input !\n";
-        return false;
+    x -= 1, y -= 1;
+    //assert((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
+    bool corXY = playingField[y][x] == '0' && ((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
+    while (!corXY){
+        cout << "incorrect X or Y\n" << "Please enter correct X and Y :";
+        cin >> x;
+        assert(x >= 0 && x <= 3);
+        cin >> y;
+        assert(y >= 0 && y <= 3);
+        x -= 1, y -= 1;
+        //assert((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
+        corXY = playingField[y][x] == '0' && ((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
     }
+    bool corSy = player == 1 && userAns == player1 || player == 2 && userAns == player2;
+    while (!corSy){
+        cout << "Incorrect symbol !\n" << "Please enter correct symbol ,X or O :" , cin >> userAns;
+        corSy = player == 1 && userAns == player1 || player == 2 && userAns == player2;
+    }
+        playingField[y][x] = userAns;
+        coutField();
+        return true;
 }
 int main() {
     bool corUsAns = (userAns == 'O' || userAns == 'X');
@@ -56,13 +64,17 @@ int main() {
     }
     player1 == 'X' ? player2 = 'O' : player2 = 'X';
     cout << "input format - x y X or O\n";
-
+    int counterStep = 0;
+    while (counterStep < 9){
         cout << "go 1 player\n";
         cin >> x >> y >> userAns;
-        chekInput(1);
+        counterStep += chekInput(1);
+        if (counterStep >= 9) continue;
         cout << "go 2 player\n";
         cin >> x >> y >> userAns;
-        chekInput(2);
+        counterStep += chekInput(2);
+    }
+
 
     return 0;
 }
