@@ -39,7 +39,7 @@ int main() {
     std::cout << "Enter 2 array\n";
     enterArray(array_2);
     compareArray(array_1, array_2) ? std::cout << "equal!\n" : std::cout << "NO equal!\n";
-    coutArray(array_1);
-    coutArray(array_2);
+    //coutArray(array_1);
+    //coutArray(array_2);
     return 0;
 }
