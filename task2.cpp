@@ -9,8 +9,6 @@ int y=0;
 char playingField[3][3] = {' ',' ',' ',
                            ' ',' ',' ',
                            ' ',' ',' ',};
-
-
 void coutField(){
     for (int line = 2 ; line >= 0; line--){
         for (int column = 0; column < 3 ; column++){
@@ -50,11 +48,32 @@ bool chekWin(){
             }
         }
     }
+    for (int l = 0, c = 2, winOd = 0, winXd = 0; l < 3; l++ , c--){
+        winOd += playingField[l][c] == 'O';
+        winXd += playingField[l][c] == 'X';
+        if (winOd == 3) {
+            cout << "win o\n";
+            return true;
+        }else if (winXd == 3) {
+            cout << "win x\n";
+            return true;
+        }
+    }
+    for (int l = 0, winOd = 0, winXd = 0; l < 3; l++){
+        winOd += playingField[l][l] == 'O';
+        winXd += playingField[l][l] == 'X';
+        if (winOd == 3) {
+            cout << "win o\n";
+            return true;
+        }else if (winXd == 3) {
+            cout << "win x\n";
+            return true;
+        }
+    }
     return false;
 }
 bool chekInput(int player){
     x -= 1, y -= 1;
-    //assert((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
     bool corXY = playingField[y][x] == ' ' && ((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
     while (!corXY){
         cout << "incorrect X or Y\n" << "Please enter correct X and Y :";
@@ -63,7 +82,6 @@ bool chekInput(int player){
         cin >> y;
         assert(y >= 0);
         x -= 1, y -= 1;
-        //assert((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
         corXY = playingField[y][x] == ' ' && ((x >= 0 && x <= 2) && (y >= 0 && y <= 2));
     }
     bool corSy = player == 1 && userAns == player1 || player == 2 && userAns == player2;
@@ -95,18 +113,23 @@ int main() {
     player1 == 'X' ? player2 = 'O' : player2 = 'X';
     cout << "input format - x y X or O\n";
     int counterStep = 0;
-    while (counterStep < 9 && !chekWin()){
+    while (counterStep < 9){
         cout << "go 1 player\n";
         cin >> x >> y >> userAns;
         counterStep += chekInput(1);
-        if (chekWin()) return 0;
+        if (chekWin()) {
+            counterStep = 9;
+            return 0;
+        }
         if (counterStep >= 9) continue;
         cout << "go 2 player\n";
         cin >> x >> y >> userAns;
         counterStep += chekInput(2);
-        if (chekWin()) return 0;
+        if (chekWin()) {
+            counterStep = 9;
+            return 0;
+        }
     }
-
-
+    cout << "nobody\n";
     return 0;
 }
