@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-vector<float> coutVec(vector<float> vec){
+vector<float> coutVec(vector<float> &v){
     cout << "Enter number vec :\n";
     float number;
     for (int i = 0; i < 4 ;i++){
         cin >> number;
-        vec[i] = number;
+        v[i] = number;
     }
-    return vec;
+    return v;
 }
 int main() {
     vector<float> v(4);
@@ -18,7 +18,7 @@ int main() {
                      {36.3, 7.1, 0.0, 74.1}};
     vector <float> r(4);
     //float sum;
-    v = coutVec(v);
+    coutVec(v);
     for (int l = 0; l < 4; l++){
         float counter = 0;
         for (int c = 0; c < 4; c++){
