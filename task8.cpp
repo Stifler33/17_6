@@ -11,9 +11,6 @@ void initField(bool field[][5][5]){
         }
     }
 }
-void enterHeightBlock(bool field[][5][5], int &heightBlock, int x, int y){
-
-}
 void coutField(bool field[][5][5]){
     for (int z = 0; z < 10; z++){
         cout << z << " *********************\n";
