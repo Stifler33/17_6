@@ -15,17 +15,29 @@ void init_Field_Player(vector<vector<int>> &field, int numberPlayer){
         out = originX != endX && originY != endY;
         if (out){
             cout << "only vertical or horizontal !\n";
+        }else {
+             if (originX == endX){
+                for (int l = originY; l <= endY; l++){
+                    if (field[l][originX] == 0) {
+                        field[l][originX] = 1;
+                    }else {
+                        cout << "already here ship!\n";
+                        out = true;
+                    }
+                }
+            }else if (originY == endY){
+                for (int c = originX; c <= endX; c++){
+                    if (field[originY][c] == 0) {
+                        field[originY][c] = 1;
+                    }else {
+                        cout << "already here ship!\n";
+                        out = true;
+                    }
+                }
+            }
         }
     }while (out);
-    if (originX == endX){
-        for (int l = originY; l < endY; l++){
-            field[l][originX] = 1;
-        }
-    }else if (originY == endY){
-        for (int c = originX; c < endX; c++){
-            field[originY][c] = 1;
-        }
-    }
+
 
 }
 void cout_Field(vector<vector<int>> &field){
