@@ -1,3 +1,23 @@
 17 57 75 03 3132 0010 2545 7173 9698 2959
 
 05 02 51 75 5767 3334 7173 9698 0828 0030
+
+ if (inX == endX){
+                for (int l = inY; l <= endY; l++){
+                    if (field[l][inX] == 0) {
+                        field[l][inX] = 1;
+                    }else {
+                        cout << "already here ship!\n";
+                        return false;
+                    }
+                }
+            }else if (inY == endY){
+                for (int c = inX; c <= endX; c++){
+                    if (field[inY][c] == 0) {
+                        field[inY][c] = 1;
+                    }else {
+                        cout << "already here ship!\n";
+                        return false;
+                    }
+                }
+            }
