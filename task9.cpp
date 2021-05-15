@@ -27,11 +27,11 @@ bool init_Field_Player(vector<vector<int>> &field, int &inX, int &inY, int &endX
             }
     return true;
         }
-void input_ship(int &dockShip, vector<vector<int>> &field1){
-    bool corCoordinates;
+void input_ship(int &dockShip, vector<vector<int>> &field){
+    bool corCoordinates = true;
     do{
         if (dockShip == 1){
-            cout << "enter 1 dock ship ";
+            cout << "enter 1 dock ship\n";
             cin >> originX >> originY;
             endX = originX;
             endY = originY;
@@ -40,10 +40,36 @@ void input_ship(int &dockShip, vector<vector<int>> &field1){
             cin >> originX >> originY;
             cout << "enter end x and y " << dockShip << " dock ship\n";
             cin >> endX >> endY;
-            corCoordinates = originX != endX && originY != endY;
-            if (corCoordinates) cout << "incorrect coordinates\n";
+            if (originX == endX && originY >= endY){
+                    corCoordinates = false;
+            }else if (originY == endY && originX >= endX){
+                    corCoordinates = false;
+            }
+            if (!corCoordinates) cout << "incorrect coordinates\n";
         }
-    }while(!init_Field_Player(field1,originX,originY,endX,endY) || corCoordinates);
+    }while(!init_Field_Player(field,originX,originY,endX,endY) || !corCoordinates);
+}
+void count_ship(vector<vector<int>> &field){
+    int dockShip = 1;
+    while (dockShip <= 4){
+
+        for (int Ship1 = 0; Ship1 < 4; Ship1++){
+            input_ship(dockShip, field);
+        }
+        dockShip++;
+        for (int ship2 = 0; ship2 < 3; ship2++){
+            input_ship(dockShip, field);
+        }
+        dockShip++;
+        for (int ship3 = 0; ship3 < 2; ship3++){
+            input_ship(dockShip, field);
+        }
+        dockShip++;
+        for (int ship4 = 0; ship4 < 1; ship4++){
+            input_ship(dockShip, field);
+        }
+        dockShip++;
+    }
 }
 void cout_Field(vector<vector<int>> &field){
     for (int l = 0; l < field.size(); l++){
@@ -52,35 +78,18 @@ void cout_Field(vector<vector<int>> &field){
         }
         cout << endl;
     }
+    cout << "\n*************************\n";
 }
 int main() {
     vector<vector<int>> field1(10,vector<int> (10, 0));
     vector<vector<int>> field2(10,vector<int> (10, 0));
+    count_ship(field1);
+    count_ship(field2);
 
 
-    int dockShip = 1;
-    while (dockShip <= 4){
-
-         for (int Ship1 = 0; Ship1 < 4; Ship1++){
-            input_ship(dockShip, field1);
-        }
-         dockShip++;
-        for (int ship2 = 0; ship2 < 3; ship2++){
-            input_ship(dockShip, field1);
-        }
-        dockShip++;
-        for (int ship3 = 0; ship3 < 2; ship3++){
-            input_ship(dockShip, field1);
-        }
-        dockShip++;
-        for (int ship4 = 0; ship4 < 1; ship4++){
-            input_ship(dockShip, field1);
-        }
-        dockShip++;
-    }
 
     cout_Field(field1);
-
+    cout_Field(field2);
 
     return 0;
 }
