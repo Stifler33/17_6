@@ -60,3 +60,9 @@
                     }while(hit);
                     cout_Field(field2);
                 }while (winPlayer == 0);
+
+                1
+                2
+                3
+                4
+                337.8 1028.8 113.04 346.9

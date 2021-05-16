@@ -17,14 +17,11 @@ int main() {
                      {0.1, 1.1f, 22.1, 11.11},
                      {36.3, 7.1, 0.0, 74.1}};
     vector <float> r(4);
-    //float sum;
     coutVec(v);
     for (int l = 0; l < 4; l++){
-        float counter = 0;
         for (int c = 0; c < 4; c++){
-            counter += v[c] * m[l][c];
+            r[l] += v[c] * m[l][c];
         }
-        r[l] += counter;
     }
     for (float i : r){
         cout << i << " ";
