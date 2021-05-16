@@ -21,3 +21,4 @@
                     }
                 }
             }
+            !init_Field_Player(field,originX,originY,endX,endY) ||

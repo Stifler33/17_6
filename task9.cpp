@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 using namespace std;
 int originX = 0;
 int originY = 0;
 int endX = 0;
 int endY = 0;
 bool init_Field_Player(vector<vector<int>> &field, int &inX, int &inY, int &endX, int &endY){
+    assert(inX < 10 && inY < 10 && endX < 10 && endY < 10);
             for (int iterationCount = 0; iterationCount < 2; iterationCount++){
                 if (inX == endX){
                     for (int l = inY; l <= endY; l++){
@@ -37,6 +39,7 @@ void input_ship(int &dockShip, vector<vector<int>> &field){
             cin >> originX >> originY;
             endX = originX;
             endY = originY;
+            corCoordinates = originX < 10 && originY < 10;
         }else {
             cout << "enter origin x and y " << dockShip << " dock ship\n";
             cin >> originX >> originY;
@@ -48,11 +51,10 @@ void input_ship(int &dockShip, vector<vector<int>> &field){
                     corCoordinates = false;
             }else if (originX != endX && originY != endY){
                 corCoordinates = false;
-            }else corCoordinates = true;
-
-            if (!corCoordinates) cout << "incorrect coordinates\n";
+            }else corCoordinates = originX < 10 && originY < 10 && endX < 10 && endY < 10;
         }
-    }while(!init_Field_Player(field,originX,originY,endX,endY) || !corCoordinates);
+        if (!corCoordinates) cout << "incorrect coordinates\n";
+    }while(!corCoordinates || !init_Field_Player(field,originX,originY,endX,endY));
 }
 void count_ship(vector<vector<int>> &field){
     int dockShip = 1;
@@ -85,6 +87,7 @@ void cout_Field(vector<vector<int>> &field){
     }
     cout << "\n*************************\n";
 }
+
 int main() {
     vector<vector<int>> field1(10,vector<int> (10, 0));
     vector<vector<int>> field2(10,vector<int> (10, 0));
