@@ -22,3 +22,41 @@
                 }
             }
             !init_Field_Player(field,originX,originY,endX,endY) ||
+
+             do {
+                    bool hit = false;
+                    do {
+                        if (shots_Left(field1, x, y) == 0) {
+                            winPlayer = 1;
+                        }else {
+                            cout << "shoot player 1\n";
+                            cin >> x >> y;
+                            if (field1[y][x] == '*') {
+                                cout << "hit! Shot again\n";
+                                field1[y][x] = ' ';
+                                hit = true;
+                            } else if (field1[y][x] == ' ') {
+                                cout << "missed :(\n";
+                                hit = false;
+                            }
+                        }
+                    }while(hit);
+                    cout_Field(field1);
+                    do {
+                        if (shots_Left(field2, x, y) == 0) {
+                            winPlayer = 2;
+                        }else {
+                            cout << "shoot player 2\n";
+                            cin >> x >> y;
+                            if (field2[y][x] == '*') {
+                                cout << "hit! Shot again\n";
+                                field2[y][x] = ' ';
+                                hit = true;
+                            } else if (field2[y][x] == ' ') {
+                                cout << "missed :(\n";
+                                hit = false;
+                            }
+                        }
+                    }while(hit);
+                    cout_Field(field2);
+                }while (winPlayer == 0);
