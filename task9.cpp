@@ -101,14 +101,18 @@ bool shot_player(vector<vector<char>> &field, int player){
     int x, y;
     cout << "shoot player " << player << endl;
     cin >> x >> y;
-    assert((x >= 0 && x < 10) && (y >= 0 && y < 10));
-    if (field[y][x] == '*') {
-        cout << "hit! Shot again\n";
-        field[y][x] = ' ';
+    if ((x >= 0 && x < 10) && (y >= 0 && y < 10)) {
+        if (field[y][x] == '*') {
+            cout << "hit! Shot again\n";
+            field[y][x] = ' ';
+            return true;
+        } else if (field[y][x] == ' ') {
+            cout << "missed :(\n";
+            return false;
+        }
+    }else {
+        cout << "x or y incorrect!\n";
         return true;
-    } else if (field[y][x] == ' ') {
-        cout << "missed :(\n";
-        return false;
     }
 }
 int main() {
